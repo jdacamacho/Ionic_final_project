@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "productsv1": {
+      "hosting": {
+        "app": [
+          "productsv1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "productsv1"
+  }
+}
