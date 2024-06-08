@@ -1,5 +1,15 @@
 
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Products application</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-card>
+  <ion-item>
+    <ion-label> Code:</ion-label>
+    <ion-input [(ngModel)]="newProduct.code"></ion-input>
+  </ion-item>
   <ion-item>
     <ion-label> Name:</ion-label>
     <ion-input [(ngModel)]="newProduct.name"></ion-input>
@@ -27,6 +37,7 @@
 <ion-list>
   @for (product of products; track $index) {
     <ion-item>
+      <ion-label>Code: {{product.code}} </ion-label>
       <ion-label>Name: {{product.name}} </ion-label>
       <ion-label>Price: {{product.price}} </ion-label>
       <ion-button slot="end">
