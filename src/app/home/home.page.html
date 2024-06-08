@@ -29,6 +29,14 @@
     <ion-item>
       <ion-label>Name: {{product.name}} </ion-label>
       <ion-label>Price: {{product.price}} </ion-label>
+      <ion-button slot="end">
+        <ion-button (click)="edit(product)">
+          <ion-icon slot="icon-only" name="create" color="warning"></ion-icon>
+        </ion-button>
+        <ion-button (click)="delete(product)">
+          <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>
+        </ion-button>
+      </ion-button>
     </ion-item>
   }
 </ion-list>

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collectionData } from '@angular/fire/firestore';
-import { collection, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
 const {v4: uuidv4 } = require('uuid');
@@ -31,6 +31,15 @@ export class FirestoreService {
   async updateDocumentID(data: any, path:string, idDoc:string){
     const document = doc(this.firestore,`${path}/${idDoc}`);
     return updateDoc(document,data);
+  }
+
+  deleteDocumentID(path: string, idDoc: string){
+    const document = doc(this.firestore,`${path}/${idDoc}`);
+    return deleteDoc(document);
+  }
+
+  deleteDocFromRef(ref: any){
+    return deleteDoc(ref);
   }
 
   createIdDoc(){

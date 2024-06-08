@@ -4,7 +4,8 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonRefresher, IonRefresher
 import { product } from '../common/models/Product';
 import { FirestoreService } from '../common/services/firestore.service';
 import { FormsModule } from '@angular/forms';
-
+import { addIcons } from 'ionicons';
+import * as icons from 'ionicons/icons';
 
 
 @Component({
@@ -27,6 +28,9 @@ export class HomePage {
 
   constructor(private firestoreService: FirestoreService) {
     this.loadProducts();
+    this.initProduct();
+    addIcons({ create: icons['create']});
+    addIcons({ trash: icons['trash']});
   }
 
   loadProducts(){
@@ -50,6 +54,16 @@ export class HomePage {
   async save(){
     this.loading = true;
     await this.firestoreService.createDocumentID(this.newProduct,'Products',this.newProduct.id);
+    this.loading = false;
+  }
+
+  edit(product: product){
+    this.newProduct = product;
+  }
+
+  async delete(product: product){
+    this.loading = true;
+    await this.firestoreService.deleteDocumentID('Products', product.id);
     this.loading = false;
   }
 
