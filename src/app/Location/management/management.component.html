@@ -1,0 +1,55 @@
+<app-header></app-header>
+
+@if (loading) {
+  <div style="text-align: center;">
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+}
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Location Management</ion-card-title>
+  </ion-card-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="2">
+        <ion-button (click)="home()" shape="round" expand="full">
+          Home
+          <ion-icon name="home" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="save()" shape="round" expand="full">
+          Add location
+          <ion-icon name="create" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card-content>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3"><strong>Place</strong></ion-col>
+        <ion-col size="3"><strong>Address</strong></ion-col>
+        <ion-col size="3"><strong>Actions</strong></ion-col>
+      </ion-row>
+      <ion-row *ngFor="let location of locations; track: trackB $index">
+        <ion-col size="3">{{location.place }}</ion-col>
+        <ion-col size="3">{{location.address}}</ion-col>
+        <ion-col size="3">
+          <ion-button (click)="update(location)" color="warning" fill="clear">
+            <ion-icon name="create"></ion-icon>
+          </ion-button>
+          <ion-button (click)="delete(location)" color="danger" fill="clear">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card-content>
+</ion-card>
+
