@@ -6,18 +6,20 @@ import { FirestoreService } from '../common/services/firestore.service';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import * as icons from 'ionicons/icons';
+import { HeaderComponent } from "../header/header.component";
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  standalone: true,
-  imports: [IonItemOptions, IonItemOption, IonItemSliding, 
-            IonInput, IonModal, NgFor, IonLabel, 
-            IonItem, IonIcon, IonButton, IonButtons, 
-            CommonModule, IonHeader, IonToolbar, 
-            IonTitle, IonContent, IonList,
-            IonCard,FormsModule,IonSpinner],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    standalone: true,
+    imports: [IonItemOptions, IonItemOption, IonItemSliding,
+        IonInput, IonModal, NgFor, IonLabel,
+        IonItem, IonIcon, IonButton, IonButtons,
+        CommonModule, IonHeader, IonToolbar,
+        IonTitle, IonContent, IonList,
+        IonCard, FormsModule, IonSpinner, HeaderComponent]
 })
 export class HomePage {
   
@@ -26,7 +28,8 @@ export class HomePage {
   loading: boolean = false;
 
   constructor(private firestoreService: FirestoreService,
-              private alertController: AlertController) {
+              private alertController: AlertController,
+              private router: Router) {
     this.loadProducts();
     addIcons({ create: icons['create']});
     addIcons({ trash: icons['trash']});
@@ -40,6 +43,10 @@ export class HomePage {
         }
       }
     );
+  }
+
+  save(){
+    this.router.navigate(['/save']);
   }
 
   initProduct(){

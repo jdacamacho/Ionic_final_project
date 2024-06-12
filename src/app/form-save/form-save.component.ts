@@ -5,13 +5,15 @@ import { AlertController } from '@ionic/angular';
 import { IonButton, IonCard, IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-save',
   templateUrl: './form-save.component.html',
   styleUrls: ['./form-save.component.scss'],
   standalone: true,
-  imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton]
+  imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton,HeaderComponent]
 })
 export class FormSaveComponent {
 
@@ -19,7 +21,8 @@ export class FormSaveComponent {
   loading: boolean = false;
   
   constructor(private firestoreService: FirestoreService,
-              private alertController: AlertController) { 
+              private alertController: AlertController,
+              private router: Router) { 
     this.initProduct();
   }
 
@@ -30,6 +33,10 @@ export class FormSaveComponent {
       name: null,
       price: null
     }
+  }
+
+  home(){
+    this.router.navigate(['/home']);
   }
 
   async save() {
@@ -56,8 +63,16 @@ export class FormSaveComponent {
     const alert = await this.alertController.create({
       header: header,
       message: message,
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/home']);
+          }
+        }
+      ]
     });
+  
     await alert.present();
   }
 

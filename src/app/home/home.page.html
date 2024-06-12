@@ -1,15 +1,16 @@
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Products application</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 @if (loading) {
   <div style="text-align: center;">
     <ion-spinner name="bubbles"></ion-spinner>
   </div>
 }
+
+<div style="margin: 20px;">
+  <ion-button (click)="save()" shape="round">
+    Save product
+  </ion-button>
+</div>
 
 <ion-list>
   @for (product of products; track $index) {
@@ -28,4 +29,6 @@
     </ion-item>
   }
 </ion-list>
+
+
 
