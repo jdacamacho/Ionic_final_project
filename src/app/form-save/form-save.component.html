@@ -1,0 +1,20 @@
+<ion-card>
+  <ion-item>
+    <ion-label> Code:</ion-label>
+    <ion-input [(ngModel)]="newProduct.code"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label> Name:</ion-label>
+    <ion-input [(ngModel)]="newProduct.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label> Price:</ion-label>
+    <ion-input [(ngModel)]="newProduct.price"></ion-input>
+  </ion-item>
+</ion-card>
+
+<div style="margin: 20px;">
+  <ion-button (click)="save()" expand="block" shape="round">
+    Save product
+  </ion-button>
+</div>

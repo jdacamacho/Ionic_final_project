@@ -1,6 +1,6 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal, IonItemSliding, IonItemOption, IonItemOptions, IonCard, IonSpinner, AlertController, ToastController } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal, IonItemSliding, IonItemOption, IonItemOptions, IonCard, IonSpinner, AlertController } from '@ionic/angular/standalone';
 import { product } from '../common/models/Product';
 import { FirestoreService } from '../common/services/firestore.service';
 import { FormsModule } from '@angular/forms';
@@ -49,6 +49,26 @@ export class HomePage {
       name: null,
       price: null
     }
+  }
+
+  edit(product: product) {
+    this.alertController.create({
+      header: 'Confirmar edición',
+      message: '¿Estás seguro de que deseas actualizar los datos de este producto?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Actualizar',
+          cssClass: 'primary',
+          handler: () => {
+            this.newProduct = product;
+          }
+        }
+      ]
+    }).then(alert => alert.present());
   }
 
 

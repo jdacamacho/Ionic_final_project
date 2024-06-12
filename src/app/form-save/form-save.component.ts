@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { product } from '../common/models/Product';
 import { FirestoreService } from '../common/services/firestore.service';
 import { AlertController } from '@ionic/angular';
+import { IonButton, IonCard, IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
+  selector: 'app-form-save',
+  templateUrl: './form-save.component.html',
+  styleUrls: ['./form-save.component.scss'],
+  standalone: true,
+  imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton]
 })
-export class FormComponent {
+export class FormSaveComponent {
 
   newProduct: product;
   loading: boolean = false;
@@ -17,7 +22,6 @@ export class FormComponent {
               private alertController: AlertController) { 
     this.initProduct();
   }
-
 
   initProduct(){
     this.newProduct = {
@@ -46,25 +50,7 @@ export class FormComponent {
     this.newProduct = { id: '', code: null, name: '', price: null };
   }
 
-  edit(product: product) {
-    this.alertController.create({
-      header: 'Confirmar edición',
-      message: '¿Estás seguro de que deseas actualizar los datos de este producto?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary'
-        }, {
-          text: 'Actualizar',
-          cssClass: 'primary',
-          handler: () => {
-            this.newProduct = product;
-          }
-        }
-      ]
-    }).then(alert => alert.present());
-  }
+  
 
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
