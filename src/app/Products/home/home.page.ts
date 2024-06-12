@@ -26,7 +26,6 @@ import { Router } from '@angular/router';
 export class HomePage {
   
   products: product[] = [];
-  newProduct: product;
   loading: boolean = false;
 
   constructor(private firestoreService: FirestoreService,
@@ -35,6 +34,7 @@ export class HomePage {
     this.loadProducts();
     addIcons({ create: icons['create']});
     addIcons({ trash: icons['trash']});
+    addIcons({ cog : icons['cog']});
   }
 
   loadProducts(){
@@ -49,6 +49,10 @@ export class HomePage {
 
   save(){
     this.router.navigate(['/products/save']);
+  }
+
+  locations(){
+    this.router.navigate(['locations']);
   }
 
   update(productUpdate: product){

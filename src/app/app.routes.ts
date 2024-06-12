@@ -14,6 +14,18 @@ export const routes: Routes = [
     loadComponent: () => import('./Products/form-update/form-update.component').then((m) => m.FormUpdateComponent),
   },
   {
+    path: 'locations',
+    loadComponent: () => import('./Location/management/management.component').then((m) => m.ManagementComponent),
+  },
+  {
+    path: 'locations/save',
+    loadComponent: () => import('./Location/form-save/form-save.component').then((m) => m.FormSaveComponent),
+  },
+  {
+    path: 'locations/update',
+    loadComponent: () => import('./Location/form-update/form-update.component').then((m) => m.FormUpdateComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

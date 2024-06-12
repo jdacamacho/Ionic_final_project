@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { product } from '../../common/models/Product';
 import { FirestoreService } from '../../common/services/firestore.service';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonTitle } from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonSelectOption, IonTitle } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import * as icons from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { location } from 'src/app/common/models/Location';
 
 @Component({
   selector: 'app-form-update',
@@ -16,17 +17,20 @@ import { addIcons } from 'ionicons';
   styleUrls: ['./form-update.component.scss'],
   standalone: true,
   imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton,HeaderComponent,
-    IonCardHeader,IonCardTitle,IonCardContent,IonIcon]
+    IonCardHeader,IonCardTitle,IonCardContent,IonIcon,NgFor,IonSelectOption]
 })
 export class FormUpdateComponent {
 
   currentProduct: product;
   loading: boolean = false;
-  
+  locations : location[] = [];
+  selectedLocation: location;
+
   constructor(private firestoreService: FirestoreService,
               private alertController: AlertController,
               private router: Router) { 
     this.initProduct();
+    this.loadLocations();
     addIcons({ home: icons['home']});
     this.currentProduct = this.router.getCurrentNavigation().extras.state['producto'];
   }
@@ -37,12 +41,31 @@ export class FormUpdateComponent {
       code: null,
       name: null,
       price: null,
+      location: null,
       createdAt: new Date()
     }
   }
 
   home(){
     this.router.navigate(['/home']);
+  }
+
+  loadLocations(){
+    this.firestoreService.getCollectionChanges<location>('Location').subscribe(
+      data => {
+        if(data){
+          this.locations = data
+        }
+      }
+    );
+  }
+
+
+  onLocationChange(event: CustomEvent) {
+    const selectedLocation = event.detail.value as location;
+    if (selectedLocation) {
+      this.currentProduct.location = `${selectedLocation.place} - ${selectedLocation.address}`;
+    }
   }
 
   async save() {
@@ -60,7 +83,7 @@ export class FormUpdateComponent {
 
 
   clearForm() {
-    this.currentProduct = { id: '', code: null, name: '', price: null, createdAt: new Date() };
+    this.currentProduct = { id: '', code: null, name: '', price: null, location : null,createdAt: new Date() };
   }
 
   
