@@ -2,18 +2,20 @@ import { Component } from '@angular/core';
 import { product } from '../common/models/Product';
 import { FirestoreService } from '../common/services/firestore.service';
 import { AlertController } from '@ionic/angular';
-import { IonButton, IonCard, IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
-
+import { addIcons } from 'ionicons';
+import * as icons from 'ionicons/icons';
 @Component({
   selector: 'app-form-save',
   templateUrl: './form-save.component.html',
   styleUrls: ['./form-save.component.scss'],
   standalone: true,
-  imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton,HeaderComponent]
+  imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton,HeaderComponent,
+          IonCardHeader,IonCardTitle,IonCardContent,IonIcon]
 })
 export class FormSaveComponent {
 
@@ -24,6 +26,7 @@ export class FormSaveComponent {
               private alertController: AlertController,
               private router: Router) { 
     this.initProduct();
+    addIcons({ home: icons['home']});
   }
 
   initProduct(){
@@ -41,7 +44,7 @@ export class FormSaveComponent {
 
   async save() {
     if (!this.newProduct.code || !this.newProduct.name || !this.newProduct.price) {
-      this.presentAlert('Campos incompletos', 'Por favor, llena todos los campos.');
+      this.alertError('Campos incompletos', 'Por favor, llena todos los campos.');
       return;
     }else{
       this.loading = true;
@@ -71,6 +74,17 @@ export class FormSaveComponent {
           }
         }
       ]
+    });
+  
+    await alert.present();
+  }
+
+  async alertError(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: [
+        'OK']
     });
   
     await alert.present();

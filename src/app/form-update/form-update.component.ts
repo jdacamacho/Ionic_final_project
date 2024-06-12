@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
 import { product } from '../common/models/Product';
 import { FirestoreService } from '../common/services/firestore.service';
-import { IonButton, IonCard, IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonTitle } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import * as icons from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-form-update',
   templateUrl: './form-update.component.html',
   styleUrls: ['./form-update.component.scss'],
   standalone: true,
-  imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton,HeaderComponent]
+  imports:[IonCard,IonLabel,IonItem,IonInput,FormsModule,CommonModule,IonButton,HeaderComponent,
+    IonCardHeader,IonCardTitle,IonCardContent,IonIcon]
 })
 export class FormUpdateComponent {
 
@@ -24,6 +27,7 @@ export class FormUpdateComponent {
               private alertController: AlertController,
               private router: Router) { 
     this.initProduct();
+    addIcons({ home: icons['home']});
     this.currentProduct = this.router.getCurrentNavigation().extras.state['producto'];
   }
 

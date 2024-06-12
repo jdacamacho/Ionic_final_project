@@ -1,6 +1,6 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal, IonItemSliding, IonItemOption, IonItemOptions, IonCard, IonSpinner, AlertController } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal, IonItemSliding, IonItemOption, IonItemOptions, IonCard, IonSpinner, AlertController, IonCardHeader, IonCardContent, IonCardTitle, IonGrid, IonCol, IonRow } from '@ionic/angular/standalone';
 import { product } from '../common/models/Product';
 import { FirestoreService } from '../common/services/firestore.service';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,9 @@ import { Router } from '@angular/router';
         IonItem, IonIcon, IonButton, IonButtons,
         CommonModule, IonHeader, IonToolbar,
         IonTitle, IonContent, IonList,
-        IonCard, FormsModule, IonSpinner, HeaderComponent]
+        IonCard, FormsModule, IonSpinner, HeaderComponent,
+        IonCardHeader,IonCardContent,IonCardTitle,IonGrid,
+        IonCol,IonRow]
 })
 export class HomePage {
   

@@ -1,28 +1,35 @@
 <app-header></app-header>
 
-<div style="margin: 20px;">
-  <ion-button (click)="home()" shape="round">
-    Home
-  </ion-button>
-</div>
-
 <ion-card>
-  <ion-item>
-    <ion-label> Code:</ion-label>
-    <ion-input [(ngModel)]="currentProduct.code"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label> Name:</ion-label>
-    <ion-input [(ngModel)]="currentProduct.name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label> Price:</ion-label>
-    <ion-input [(ngModel)]="currentProduct.price"></ion-input>
-  </ion-item>
-</ion-card>
+  <ion-card-header>
+    <ion-card-title>Product Management</ion-card-title>
+  </ion-card-header>
 
-<div style="margin: 20px;">
-  <ion-button (click)="save()" expand="block" shape="round">
-    Save product
-  </ion-button>
-</div>
+  <ion-card-content>
+    <div style="margin: 20px;">
+      <ion-button (click)="home()" shape="round">
+        Home
+        <ion-icon name="home" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+
+    <ion-item>
+      <ion-label>Code:</ion-label>
+      <ion-input [(ngModel)]="currentProduct.code"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Name:</ion-label>
+      <ion-input [(ngModel)]="currentProduct.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Price:</ion-label>
+      <ion-input [(ngModel)]="currentProduct.price"></ion-input>
+    </ion-item>
+
+    <div style="margin: 20px;">
+      <ion-button (click)="save()" expand="block" shape="round">
+        Save product
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
