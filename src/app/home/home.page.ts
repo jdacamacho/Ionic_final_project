@@ -1,12 +1,11 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonRefresher, IonRefresherContent, IonList, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal, IonItemSliding, IonItemOption, IonItemOptions, IonCard, IonSpinner, AlertController, ToastController } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal, IonItemSliding, IonItemOption, IonItemOptions, IonCard, IonSpinner, AlertController, ToastController } from '@ionic/angular/standalone';
 import { product } from '../common/models/Product';
 import { FirestoreService } from '../common/services/firestore.service';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import * as icons from 'ionicons/icons';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -27,10 +26,8 @@ export class HomePage {
   loading: boolean = false;
 
   constructor(private firestoreService: FirestoreService,
-              private alertController: AlertController,
-              private toastController: ToastController) {
+              private alertController: AlertController) {
     this.loadProducts();
-    this.initProduct();
     addIcons({ create: icons['create']});
     addIcons({ trash: icons['trash']});
   }
@@ -54,43 +51,6 @@ export class HomePage {
     }
   }
 
-  async save() {
-    if (!this.newProduct.code || !this.newProduct.name || !this.newProduct.price) {
-      this.presentAlert('Campos incompletos', 'Por favor, llena todos los campos.');
-      return;
-    }else{
-      this.loading = true;
-      await this.firestoreService.createDocumentID(this.newProduct, 'Products', this.newProduct.id);
-      this.loading = false;
-      this.presentAlert('Guardado exitoso', 'El producto se ha guardado exitosamente.');
-      this.clearForm();
-    }
-  }
-
-
-  clearForm() {
-    this.newProduct = { id: '', code: null, name: '', price: null };
-  }
-
-  edit(product: product) {
-    this.alertController.create({
-      header: 'Confirmar edición',
-      message: '¿Estás seguro de que deseas actualizar los datos de este producto?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary'
-        }, {
-          text: 'Actualizar',
-          cssClass: 'primary',
-          handler: () => {
-            this.newProduct = product;
-          }
-        }
-      ]
-    }).then(alert => alert.present());
-  }
 
   async delete(product: product) {
     const alert = await this.alertController.create({
