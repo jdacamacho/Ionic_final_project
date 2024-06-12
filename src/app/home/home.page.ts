@@ -58,26 +58,9 @@ export class HomePage {
     }
   }
 
-  edit(product: product) {
-    this.alertController.create({
-      header: 'Confirmar edición',
-      message: '¿Estás seguro de que deseas actualizar los datos de este producto?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary'
-        }, {
-          text: 'Actualizar',
-          cssClass: 'primary',
-          handler: () => {
-            this.newProduct = product;
-          }
-        }
-      ]
-    }).then(alert => alert.present());
+  update(productUpdate: product){
+    this.router.navigate(['/update'], { state: { producto: productUpdate } });
   }
-
 
   async delete(product: product) {
     const alert = await this.alertController.create({
@@ -96,7 +79,6 @@ export class HomePage {
             this.loading = true;
             await this.firestoreService.deleteDocumentID('Products', product.id);
             this.loading = false;
-            // Mostrar mensaje de confirmación
             this.presentAlert("Eliminado exitoso","Producto eliminado con exito");
           }
         }

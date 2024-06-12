@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent: () => import('./form-save/form-save.component').then((m) => m.FormSaveComponent),
   },
   {
+    path: 'update',
+    loadComponent: () => import('./form-update/form-update.component').then((m) => m.FormUpdateComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
