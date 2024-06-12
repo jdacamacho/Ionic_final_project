@@ -9,19 +9,19 @@ import { HeaderComponent } from "../../Products/header/header.component";
 import { IonAlert, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid, IonIcon, IonInput, IonItem, IonLabel, IonRow } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 @Component({
-    selector: 'app-form-save',
-    templateUrl: './form-save.component.html',
-    styleUrls: ['./form-save.component.scss'],
-    standalone: true,
-    imports: [HeaderComponent,IonCard,IonCardContent,IonCardHeader,IonCardTitle,
-              IonGrid,IonCol,IonRow,IonButton,IonIcon,IonAlert,IonInput,IonItem,
-              IonLabel,FormsModule]
+  selector: 'app-form-save',
+  templateUrl: './form-save.component.html',
+  styleUrls: ['./form-save.component.scss'],
+  standalone: true,
+  imports: [HeaderComponent,IonCard,IonCardContent,IonCardHeader,IonCardTitle,
+            IonGrid,IonCol,IonRow,IonButton,IonIcon,IonAlert,IonInput,IonItem,
+            IonLabel,FormsModule]
 })
 export class FormSaveComponent {
 
   newLocation: location;
   loading: boolean = false;
-  
+
   constructor(private firestoreService: FirestoreService,
               private alertController: AlertController,
               private router: Router) { 
@@ -64,7 +64,7 @@ export class FormSaveComponent {
     this.newLocation = { id: '', place: null, address: ''};
   }
 
-  
+
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header: header,
@@ -78,7 +78,7 @@ export class FormSaveComponent {
         }
       ]
     });
-  
+
     await alert.present();
   }
 
@@ -89,9 +89,9 @@ export class FormSaveComponent {
       buttons: [
         'OK']
     });
-  
+
     await alert.present();
   }
-  
+
 
 }

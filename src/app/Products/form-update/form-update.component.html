@@ -25,14 +25,7 @@
       <ion-label>Price:</ion-label>
       <ion-input [(ngModel)]="currentProduct.price"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label>Location:</ion-label>
-      <ion-select [(ngModel)]="selectedLocation" (ionChange)="onLocationChange($event)">
-        <ion-select-option *ngFor="let location of locations" [value]="location">
-          {{ location.place }} - {{ location.address }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+    
 
     <div style="margin: 20px;">
       <ion-button (click)="save()" expand="block" shape="round">

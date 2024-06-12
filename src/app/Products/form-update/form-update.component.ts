@@ -23,14 +23,11 @@ export class FormUpdateComponent {
 
   currentProduct: product;
   loading: boolean = false;
-  locations : location[] = [];
-  selectedLocation: location;
 
   constructor(private firestoreService: FirestoreService,
               private alertController: AlertController,
               private router: Router) { 
     this.initProduct();
-    this.loadLocations();
     addIcons({ home: icons['home']});
     this.currentProduct = this.router.getCurrentNavigation().extras.state['producto'];
   }
@@ -50,27 +47,10 @@ export class FormUpdateComponent {
     this.router.navigate(['/home']);
   }
 
-  loadLocations(){
-    this.firestoreService.getCollectionChanges<location>('Location').subscribe(
-      data => {
-        if(data){
-          this.locations = data
-        }
-      }
-    );
-  }
-
-
-  onLocationChange(event: CustomEvent) {
-    const selectedLocation = event.detail.value as location;
-    if (selectedLocation) {
-      this.currentProduct.location = `${selectedLocation.place} - ${selectedLocation.address}`;
-    }
-  }
 
   async save() {
     if (!this.currentProduct.code || !this.currentProduct.name || !this.currentProduct.price) {
-      this.presentAlert('Campos incompletos', 'Por favor, llena todos los campos.');
+      this.alertError('Campos incompletos', 'Por favor, llena todos los campos.');
       return;
     }else{
       this.loading = true;
@@ -87,7 +67,6 @@ export class FormUpdateComponent {
   }
 
   
-
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header: header,
@@ -105,5 +84,16 @@ export class FormUpdateComponent {
     await alert.present();
   }
   
+  async alertError(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: [
+        'OK']
+    });
+  
+    await alert.present();
+  }
+
 
 }

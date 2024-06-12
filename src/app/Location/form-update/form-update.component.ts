@@ -49,7 +49,7 @@ export class FormUpdateComponent {
 
   async save() {
     if (!this.currentLocation.place || !this.currentLocation.address ) {
-      this.presentAlert('Campos incompletos', 'Por favor, llena todos los campos.');
+      this.alertError('Campos incompletos', 'Por favor, llena todos los campos.');
       return;
     }else{
       this.loading = true;
@@ -79,6 +79,17 @@ export class FormUpdateComponent {
           }
         }
       ]
+    });
+  
+    await alert.present();
+  }
+
+  async alertError(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: [
+        'OK']
     });
   
     await alert.present();
