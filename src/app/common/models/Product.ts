@@ -3,4 +3,5 @@ export interface product{
     code: number;
     name: string;
     price: number;
+    createdAt: Date;
 }

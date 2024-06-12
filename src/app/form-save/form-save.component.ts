@@ -34,7 +34,8 @@ export class FormSaveComponent {
       id: this.firestoreService.createIdDoc(),
       code: null,
       name: null,
-      price: null
+      price: null,
+      createdAt: new Date()
     }
   }
 
@@ -57,7 +58,7 @@ export class FormSaveComponent {
 
 
   clearForm() {
-    this.newProduct = { id: '', code: null, name: '', price: null };
+    this.newProduct = { id: '', code: null, name: '', price: null , createdAt: new Date()};
   }
 
   

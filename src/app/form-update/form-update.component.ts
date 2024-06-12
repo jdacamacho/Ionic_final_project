@@ -36,7 +36,8 @@ export class FormUpdateComponent {
       id: this.firestoreService.createIdDoc(),
       code: null,
       name: null,
-      price: null
+      price: null,
+      createdAt: new Date()
     }
   }
 
@@ -59,7 +60,7 @@ export class FormUpdateComponent {
 
 
   clearForm() {
-    this.currentProduct = { id: '', code: null, name: '', price: null };
+    this.currentProduct = { id: '', code: null, name: '', price: null, createdAt: new Date() };
   }
 
   

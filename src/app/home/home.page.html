@@ -21,16 +21,16 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col size="2"><strong>Code</strong></ion-col>
-        <ion-col size="4"><strong>Name</strong></ion-col>
-        <ion-col size="2"><strong>Price</strong></ion-col>
-        <ion-col size="4"><strong>Actions</strong></ion-col>
+        <ion-col size="3"><strong>Code</strong></ion-col>
+        <ion-col size="3"><strong>Name</strong></ion-col>
+        <ion-col size="3"><strong>Price</strong></ion-col>
+        <ion-col size="3"><strong>Actions</strong></ion-col>
       </ion-row>
       <ion-row *ngFor="let product of products; track : track $index">
-        <ion-col size="2">{{product.code}}</ion-col>
-        <ion-col size="4">{{product.name}}</ion-col>
-        <ion-col size="2">{{product.price}}</ion-col>
-        <ion-col size="4">
+        <ion-col size="3">{{product.code}}</ion-col>
+        <ion-col size="3">{{product.name}}</ion-col>
+        <ion-col size="3">{{product.price}}</ion-col>
+        <ion-col size="3">
           <ion-button (click)="update(product)">
             <ion-icon slot="icon-only" name="create" color="warning"></ion-icon>
           </ion-button>

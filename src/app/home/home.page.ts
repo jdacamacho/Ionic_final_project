@@ -51,15 +51,6 @@ export class HomePage {
     this.router.navigate(['/save']);
   }
 
-  initProduct(){
-    this.newProduct = {
-      id: this.firestoreService.createIdDoc(),
-      code: null,
-      name: null,
-      price: null
-    }
-  }
-
   update(productUpdate: product){
     this.router.navigate(['/update'], { state: { producto: productUpdate } });
   }
