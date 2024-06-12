@@ -7,6 +7,7 @@ import * as icons from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { HeaderComponent } from "../../Products/header/header.component";
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid, IonIcon, IonRow, IonSpinner } from '@ionic/angular/standalone';
+import { NgFor } from '@angular/common';
 
 @Component({
     selector: 'app-management',
@@ -14,7 +15,7 @@ import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol
     styleUrls: ['./management.component.scss'],
     standalone: true,
     imports: [HeaderComponent,IonSpinner,IonCard,IonCardHeader,IonCardTitle,IonCardContent,
-              IonButton,IonRow,IonCol,IonGrid,IonIcon]
+              IonButton,IonRow,IonCol,IonGrid,IonIcon,NgFor]
 })
 export class ManagementComponent {
 

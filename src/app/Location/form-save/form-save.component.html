@@ -1,3 +1,43 @@
-<p>
-  form-save works!
-</p>
+<app-header></app-header>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Location Management</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-button (click)="home()" shape="round" expand="full">
+            Home
+            <ion-icon name="home" slot="end"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="management()" shape="round" expand="full">
+            Locations
+            <ion-icon name="cog" slot="end"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item>
+      <ion-label>Place:</ion-label>
+      <ion-input [(ngModel)]="newLocation.place"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Address:</ion-label>
+      <ion-input [(ngModel)]="newLocation.address"></ion-input>
+    </ion-item>
+
+    <div style="margin: 20px;">
+      <ion-button (click)="save()" expand="block" shape="round">
+        Save location
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+

@@ -36,7 +36,7 @@
         <ion-col size="3"><strong>Address</strong></ion-col>
         <ion-col size="3"><strong>Actions</strong></ion-col>
       </ion-row>
-      <ion-row *ngFor="let location of locations; track: trackB $index">
+      <ion-row *ngFor="let location of locations; track : track $index">
         <ion-col size="3">{{location.place }}</ion-col>
         <ion-col size="3">{{location.address}}</ion-col>
         <ion-col size="3">
