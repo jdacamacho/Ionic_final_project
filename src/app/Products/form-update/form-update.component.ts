@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { product } from '../common/models/Product';
-import { FirestoreService } from '../common/services/firestore.service';
+import { product } from '../../common/models/Product';
+import { FirestoreService } from '../../common/services/firestore.service';
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonTitle } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';

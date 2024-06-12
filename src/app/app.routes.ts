@@ -3,15 +3,15 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    loadComponent: () => import('./Products/home/home.page').then((m) => m.HomePage),
   },
   {
-    path: 'save',
-    loadComponent: () => import('./form-save/form-save.component').then((m) => m.FormSaveComponent),
+    path: 'products/save',
+    loadComponent: () => import('./Products/form-save/form-save.component').then((m) => m.FormSaveComponent),
   },
   {
-    path: 'update',
-    loadComponent: () => import('./form-update/form-update.component').then((m) => m.FormUpdateComponent),
+    path: 'products/update',
+    loadComponent: () => import('./Products/form-update/form-update.component').then((m) => m.FormUpdateComponent),
   },
   {
     path: '',

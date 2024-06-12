@@ -1,8 +1,8 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonButtons, IonButton, IonIcon, IonItem, IonLabel, IonInput, IonModal, IonItemSliding, IonItemOption, IonItemOptions, IonCard, IonSpinner, AlertController, IonCardHeader, IonCardContent, IonCardTitle, IonGrid, IonCol, IonRow } from '@ionic/angular/standalone';
-import { product } from '../common/models/Product';
-import { FirestoreService } from '../common/services/firestore.service';
+import { product } from '../../common/models/Product';
+import { FirestoreService } from '../../common/services/firestore.service';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import * as icons from 'ionicons/icons';
@@ -48,11 +48,11 @@ export class HomePage {
   }
 
   save(){
-    this.router.navigate(['/save']);
+    this.router.navigate(['/products/save']);
   }
 
   update(productUpdate: product){
-    this.router.navigate(['/update'], { state: { producto: productUpdate } });
+    this.router.navigate(['/products/update'], { state: { producto: productUpdate } });
   }
 
   async delete(product: product) {

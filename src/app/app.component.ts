@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { HomePage } from './home/home.page';
+import { HomePage } from './Products/home/home.page';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
